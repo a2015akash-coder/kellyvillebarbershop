@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const PLACE_ID = "ChIJu2u0LEyjEmsRHGa2PQTjBRs";
+const PLACE_ID = "ChIJQxmF18ihEmsRwMGUKXmW_no";
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY || "";
 
 const FIELDS = [
