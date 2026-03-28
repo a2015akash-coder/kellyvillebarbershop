@@ -80,6 +80,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
+  icons: {
+    icon: "/barber.ico",
+    shortcut: "/barber.ico",
+  },
 };
 
 export default function RootLayout({
