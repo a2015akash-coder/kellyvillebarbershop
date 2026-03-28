@@ -1,6 +1,6 @@
 /** Shared SEO constants used across metadata and JSON-LD. */
 
-export const SITE_URL = "https://kellyvillebarber.com.au";
+export const SITE_URL = "https://thegroomingroom.com.au";
 export const SITE_NAME = "The Grooming Room Barbershop";
 export const DEFAULT_OG_IMAGE =
   "https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_1200/v1767704060/interro_veoi1z.webp";

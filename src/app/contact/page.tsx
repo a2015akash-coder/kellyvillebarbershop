@@ -3,9 +3,12 @@ import ContactInfo from "@/components/sections/contact/contact-info";
 import ContactMap from "@/components/sections/contact/contact-map";
 
 export const metadata: Metadata = {
-  title: "Contact Us | The Grooming Room Barbershop Kellyville",
+  title: "Contact The Grooming Room Barbershop | Kellyville",
   description:
-    "Get in touch with The Grooming Room Barbershop in Kellyville. Walk-ins welcome at 90 Wrights Rd, Kellyville NSW 2155. Call us or send a message.",
+    "Contact The Grooming Room Barbershop in Kellyville. Call, get directions, or visit us for professional men's haircuts, fades, and beard trims. Walk-ins welcome.",
+  alternates: {
+    canonical: "https://thegroomingroom.com.au/contact",
+  },
 };
 
 export default function ContactPage() {

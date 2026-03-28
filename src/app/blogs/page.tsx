@@ -5,9 +5,12 @@ import BlogGrid from "@/components/sections/blog/blog-grid";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Blog | The Grooming Room Barbershop Kellyville",
+  title: "Barber Blog | Grooming Tips & Updates | Kellyville",
   description:
-    "Practical grooming advice, expert tips, and updates from The Grooming Room Barbershop in Kellyville.",
+    "Read grooming tips, hairstyle guides, and barbershop updates from The Grooming Room Barbershop in Kellyville.",
+  alternates: {
+    canonical: "https://thegroomingroom.com.au/blogs",
+  },
 };
 
 export default async function BlogListPage() {

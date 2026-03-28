@@ -7,10 +7,13 @@ import ServicesWhyChooseUs from "@/components/sections/services/services-why-cho
 import FAQs from "@/components/sections/services/faqs";
 
 export const metadata: Metadata = {
-  title:
-    "Men's Haircuts & Beard Trims in Kellyville | The Grooming Room Barbershop",
+  title: "Men's Haircuts & Beard Trims in Kellyville | Grooming Room",
   description:
-    "Professional men's haircuts, skin fades, taper fades, beard trims, and hair colouring services at The Grooming Room Barbershop in Kellyville. Walk-ins welcome.",
+    "Sharp men's haircuts and professional beard trims in Kellyville. Clean fades, expert beard shaping, and walk-ins always welcome at The Grooming Room.",
+  alternates: {
+    canonical:
+      "https://thegroomingroom.com.au/mens-haircuts-beard-trims-kellyville",
+  },
 };
 
 export default function ServicesPage() {

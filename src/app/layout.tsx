@@ -23,11 +23,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "The Grooming Room Barbershop | Kellyville Barber",
-    template: "%s | The Grooming Room Barbershop",
+    default:
+      "The Grooming Room Barber Shop | Kellyville Barber",
+    template: "%s",
   },
   description:
-    "Premium barber shop in Kellyville offering men's haircuts, skin fades, beard trims, and colouring services. Walk-ins welcome. Free parking at Kellyville Village.",
+    "The Grooming Room Barber Shop provides men's haircuts, skin fades, colouring, and beard trimming services in Kellyville. Walk-ins are welcome for men and children.",
   keywords: [
     "barber kellyville",
     "mens haircut kellyville",
@@ -47,9 +48,9 @@ export const metadata: Metadata = {
     locale: "en_AU",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "The Grooming Room Barbershop | Kellyville Barber",
+    title: "The Grooming Room Barber Shop | Kellyville Barber",
     description:
-      "Premium barber shop in Kellyville offering men's haircuts, skin fades, beard trims, and colouring services. Walk-ins welcome.",
+      "The Grooming Room Barber Shop provides men's haircuts, skin fades, colouring, and beard trimming services in Kellyville. Walk-ins are welcome for men and children.",
     images: [
       {
         url: DEFAULT_OG_IMAGE,
@@ -61,9 +62,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Grooming Room Barbershop | Kellyville Barber",
+    title: "The Grooming Room Barber Shop | Kellyville Barber",
     description:
-      "Premium barber shop in Kellyville offering men's haircuts, skin fades, beard trims, and colouring services.",
+      "The Grooming Room Barber Shop provides men's haircuts, skin fades, colouring, and beard trimming services in Kellyville.",
     images: [DEFAULT_OG_IMAGE],
   },
   robots: {
