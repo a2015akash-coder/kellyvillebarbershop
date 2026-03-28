@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /c/kellyville/kellyvillebarber/*.config.* /c/kellyville/kellyvillebarber/*.json)",
+      "Bash(ls C:kellyvillekellyvillebarbernode_modules/next/dist/docs*.md)",
+      "Bash(find C:/kellyville/kellyvillebarber/node_modules/next/dist -name *.md -maxdepth 2)",
+      "Bash(find C:/kellyville/kellyvillebarber/node_modules/next/dist -name *.md -o -name *.mdx)",
+      "Bash(npm install:*)",
+      "Bash(node node_modules/next/dist/bin/next build)",
+      "Bash(mv hero.tsx about-us.tsx our-work.tsx why-choose-us.tsx why-locals-choose-us.tsx instagram-section.tsx location-hours.tsx home/)",
+      "Bash(mv services-hero.tsx our-service.tsx quote-card.tsx products-section.tsx faqs.tsx services-why-choose-us.tsx services/)",
+      "Bash(npx tsc:*)"
+    ]
+  }
+}
