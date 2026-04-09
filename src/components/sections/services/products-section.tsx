@@ -39,12 +39,12 @@ export default function ProductsSection() {
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Horizontal scroll on mobile, grid on tablet+ */}
+        <div className="-mx-4 flex gap-4 overflow-x-auto px-4 pb-4 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 lg:gap-10">
           {PRODUCTS.map((product) => (
             <div
               key={product.title}
-              className="overflow-hidden rounded-xl border border-gray-200"
+              className="w-[280px] shrink-0 overflow-hidden rounded-xl border border-gray-200 sm:w-auto sm:shrink"
             >
               <div className="relative aspect-[4/3] bg-gray-100">
                 <Image
@@ -56,14 +56,14 @@ export default function ProductsSection() {
                 />
               </div>
 
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900">
+              <div className="p-5 sm:p-6">
+                <h3 className="text-base font-semibold text-gray-900 sm:text-lg">
                   {product.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-gray-600">
+                <p className="mt-2 text-sm leading-relaxed text-gray-600 sm:mt-3">
                   {product.desc}
                 </p>
-                <p className="mt-4 text-sm font-medium text-orange-600">
+                <p className="mt-3 text-sm font-medium text-orange-600 sm:mt-4">
                   Available in store
                 </p>
               </div>

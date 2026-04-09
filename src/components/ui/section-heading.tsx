@@ -23,7 +23,8 @@ export default function SectionHeading({
       {eyebrow ? (
         <span
           className={badgeVariants({
-            className: "mb-4 tracking-[0.16em]",
+            className:
+              "mb-4 border-orange-100 bg-orange-50/80 tracking-[0.16em] text-[var(--brand-accent-strong)]",
           })}
         >
           {eyebrow}
@@ -32,7 +33,7 @@ export default function SectionHeading({
 
       <h2
         className={cn(
-          "mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl",
+          "mt-4 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl",
           titleClassName,
         )}
       >

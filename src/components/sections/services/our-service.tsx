@@ -1,90 +1,130 @@
 import Image from "next/image";
+import Link from "next/link";
+import { getAllServices, type Service } from "@/lib/service-data";
 
-const cdn = (path: string) =>
-  `https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_800,c_limit/${path}`;
+const LOGO_URL =
+  "https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_300/v1768612130/IMG_4966_lxnwpl.png";
 
-const STYLES = [
-  {
-    title: "Men's Haircut",
-    image: cdn("v1767627093/IMG_6223_ur5nnq.jpg"),
-    alt: "Men's haircut in progress at The Grooming Room Barbershop",
-    imgTitle: "Men's Haircut – Kellyville Barbershop",
-    description:
-      "Classic men's haircuts finished neatly for work, weekends, and regular upkeep.",
-  },
-  {
-    title: "Beard Trims",
-    image: cdn(
-      "v1767626521/624158178e487621a677f49a_Parramatta-175_mexn85.jpg",
-    ),
-    alt: "Professional beard trim with clean lines at The Grooming Room",
-    imgTitle: "Beard Trims – The Grooming Room Kellyville",
-    description:
-      "Basic beard trims with clean lines, tidy edges, and simple shaping on request.",
-  },
-  {
-    title: "Kids' Haircuts (Ages 0–12)",
-    image: cdn("v1767703082/kids_cskrcj.webp"),
-    alt: "Kids haircut service in a calm and friendly barbershop setting",
-    imgTitle: "Kids' Haircuts at The Grooming Room",
-    description:
-      "Children's haircuts provided in a calm setting with patient service and simple styling.",
-  },
-  {
-    title: "Senior Haircut",
-    image: cdn(
-      "v1767514076/8922dcc0ec6ea25439b0c033ac1083a3_vovk97.png",
-    ),
-    alt: "Senior haircut service with classic styling and tidy finish",
-    imgTitle: "Senior Haircuts – Kellyville Barbershop",
-    description:
-      "Senior haircuts offered with straightforward service and attention to comfort and ease.",
-  },
-  {
-    title: "Blowout Taper",
-    image: cdn("v1767626520/IMG_2634_i4p6sk.jpg"),
-    alt: "Blowout taper haircut with clean blending and added volume",
-    imgTitle: "Blowout Taper Haircut",
-    description:
-      "Blowout taper fade cut for curly hair with clean blending and volume.",
-  },
-  {
-    title: "Taper Fade",
-    image: cdn("v1767703060/TAPER_FADE_fckneu.webp"),
-    alt: "Taper fade haircut with clean edges and precise finish",
-    imgTitle: "Taper Fade Haircut",
-    description:
-      "Clean taper fades finished with precision and attention to detail.",
-  },
-  {
-    title: "Fade & Hair Design Services",
-    image: cdn("v1767626526/25493682304_cipoxh.png"),
-    alt: "Fade haircut with custom hair design detail",
-    imgTitle: "Fade and Hair Design Services",
-    description:
-      "Fade variations and hair designs suited to customers wanting sharper detail and defined finishes.",
-  },
-  {
-    title: "Skin Fades",
-    image: cdn("v1767703352/FADE_fal5m5.webp"),
-    alt: "Skin fade haircut with sharp finish and balanced shape",
-    imgTitle: "Skin Fade Haircut",
-    description:
-      "Clean skin fades tailored to hair type with sharp finish and balanced shape.",
-  },
-  {
-    title: "Hair Colouring",
-    image: cdn(
-      "v1768167322/WhatsApp_Image_2026-01-11_at_17.25.03_vi332u.jpg",
-    ),
-    alt: "Men's hair colouring service performed in barbershop",
-    imgTitle: "Men's Hair Colouring Services",
-    description:
-      "Men's hair colouring services for grey coverage, refresh, or full colour change.",
-  },
-];
+const SKELETON_COUNT = 9;
 
-export default function OurService() {
+function SkeletonCard({ featured = false }: { featured?: boolean }) {
+  return (
+    <div
+      className={`overflow-hidden rounded-2xl border border-gray-100 bg-white sm:rounded-3xl ${
+        featured ? "col-span-2 lg:col-span-1" : ""
+      }`}
+    >
+      {/* Image placeholder with logo */}
+      <div
+        className={`relative flex w-full items-center justify-center bg-gray-50 ${
+          featured ? "aspect-[16/9] sm:aspect-[4/3]" : "aspect-[4/3]"
+        }`}
+      >
+        <Image
+          src={LOGO_URL}
+          alt="The Grooming Room Barbershop"
+          width={120}
+          height={30}
+          className="opacity-20"
+        />
+      </div>
+
+      {/* Text skeleton */}
+      <div className="p-4 sm:p-6">
+        <div className="h-4 w-3/4 animate-pulse rounded bg-gray-100 sm:h-5" />
+        <div className="mt-2 h-[3px] w-8 rounded-full bg-orange-200 sm:w-10" />
+        <div className="mt-3 hidden space-y-2 sm:block">
+          <div className="h-3 w-full animate-pulse rounded bg-gray-100" />
+          <div className="h-3 w-2/3 animate-pulse rounded bg-gray-100" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ServiceCard({ service, featured }: { service: Service; featured: boolean }) {
+  const cardClass = `group overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-xl sm:rounded-3xl ${
+    featured ? "col-span-2 lg:col-span-1" : ""
+  }`;
+
+  const inner = (
+    <>
+      <div
+        className={`relative w-full overflow-hidden bg-gray-100 ${
+          featured ? "aspect-[16/9] sm:aspect-[4/3]" : "aspect-[4/3]"
+        }`}
+      >
+        <Image
+          src={service.coverImage}
+          alt={service.coverImageAlt}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+        />
+      </div>
+
+      <div className="p-4 sm:p-6">
+        <h3 className="text-sm font-semibold text-gray-900 sm:text-lg">
+          {service.title}
+        </h3>
+        <div className="mt-1.5 h-[3px] w-8 rounded-full bg-orange-500 sm:mt-2 sm:w-10" />
+
+        {service.price && (
+          <p className="mt-2 text-xs font-semibold text-orange-600 sm:mt-3 sm:text-sm">
+            {service.price}
+            {service.duration && (
+              <span className="ml-1.5 font-normal text-gray-500 sm:ml-2">
+                · {service.duration}
+              </span>
+            )}
+          </p>
+        )}
+
+        <p className="mt-2 hidden text-sm leading-relaxed text-gray-600 sm:block sm:mt-3">
+          {service.excerpt}
+        </p>
+
+        <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-orange-600 sm:mt-4 sm:text-sm">
+          Learn more
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </span>
+      </div>
+    </>
+  );
+
+  return (
+    <Link
+      href={`/mens-haircuts-beard-trims-kellyville/${service.slug}`}
+      className={cardClass}
+    >
+      {inner}
+    </Link>
+  );
+}
+
+export default async function OurService() {
+  let services: Service[] = [];
+
+  try {
+    services = await getAllServices();
+  } catch {
+    // Firestore unavailable — will show skeleton
+  }
+
+  const isEmpty = services.length === 0;
+
   return (
     <section className="bg-white section-spacing">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -106,33 +146,18 @@ export default function OurService() {
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {STYLES.map((style) => (
-            <div
-              key={style.title}
-              className="group overflow-hidden rounded-3xl bg-white shadow-sm transition-shadow hover:shadow-xl"
-            >
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
-                <Image
-                  src={style.image}
-                  alt={style.alt}
-                  title={style.imgTitle}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-10">
+          {isEmpty
+            ? Array.from({ length: SKELETON_COUNT }, (_, i) => (
+                <SkeletonCard key={i} featured={i === 0} />
+              ))
+            : services.map((service, idx) => (
+                <ServiceCard
+                  key={service.slug}
+                  service={service}
+                  featured={idx === 0}
                 />
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {style.title}
-                </h3>
-                <div className="mt-2 h-[3px] w-10 rounded-full bg-orange-500" />
-                <p className="mt-4 text-sm leading-relaxed text-gray-600">
-                  {style.description}
-                </p>
-              </div>
-            </div>
-          ))}
+              ))}
         </div>
       </div>
     </section>

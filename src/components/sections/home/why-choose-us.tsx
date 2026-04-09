@@ -1,89 +1,82 @@
 import Image from "next/image";
-import { MapPin, Scissors, ShieldCheck, Star } from "lucide-react";
-import { Card } from "@/components/ui/card";
-import SectionHeading from "@/components/ui/section-heading";
 
-const REASONS = [
+const STEPS = [
   {
-    Icon: Scissors,
-    color: "bg-blue-50 text-blue-600",
-    title: "Skilled Barbers",
-    text: "We provide haircuts, beard trims, and grooming services for men and children in Kellyville and nearby areas.",
+    number: "01",
+    title: "The Welcome",
+    text: "Walk in, settle in, and take a moment before the cut. The pace is relaxed, the conversation is easy, and the focus stays on a tidy result.",
+    image:
+      "https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_1200/v1767623965/IMG_2628_wzzrmi.jpg",
+    alt: "Inside The Grooming Room Barbershop in Kellyville",
+    imageTitle: "The Grooming Room interior - Kellyville",
   },
   {
-    Icon: Star,
-    color: "bg-yellow-50 text-yellow-700",
-    title: "Walk-Ins Welcome",
-    text: "No booking required. Walk in during opening hours for a haircut or beard trim.",
-  },
-  {
-    Icon: ShieldCheck,
-    color: "bg-orange-50 text-orange-600",
-    title: "Community Pricing",
-    text: "Special pricing is available for kids, seniors, and new customers.",
-  },
-  {
-    Icon: MapPin,
-    color: "bg-blue-50 text-blue-600",
-    title: "Convenient Location",
-    text: "Located at Kellyville Village Shopping Centre with free parking and nearby shops.",
+    number: "02",
+    title: "The Consultation",
+    text: "Every service starts with a practical chat about shape, length, maintenance, and what works for your day-to-day routine.",
+    image:
+      "https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_1200/v1767533885/IMG_7763_mjbc36.jpg",
+    alt: "Barber consultation and haircut service in Kellyville",
+    imageTitle: "Barber consultation and haircut service - Kellyville",
   },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-gray-50 section-spacing">
+    <section className="bg-[#f5f3f0] py-24 sm:py-32">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 items-stretch gap-16 lg:grid-cols-2 lg:gap-20">
-          <Card className="flex flex-col gap-10 p-8 lg:p-10">
-            <div id="why-choose-us">
-              <SectionHeading
-                eyebrow="Why Choose Us"
-                title="Why visit The Grooming Room Barber Shop"
-                description="We focus on the basics done right - quality haircuts, friendly service, and a clean, relaxed space that keeps locals coming back."
-                className="max-w-lg"
-                titleClassName="text-[clamp(1.85rem,3.2vw,2.6rem)]"
-              />
-            </div>
+        <div className="text-center">
+          <div className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--brand-accent)]">
+            The Experience
+          </div>
+          <h2 className="mt-4 text-4xl font-extrabold tracking-[-0.03em] text-[var(--foreground)] sm:text-5xl">
+            What To Expect
+          </h2>
+        </div>
 
-            <div className="overflow-hidden rounded-[24px] bg-gray-100">
-              <div className="relative aspect-video">
-                <Image
-                  src="https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_1200,c_limit/v1767704060/interro_veoi1z.webp"
-                  alt="Interior of The Grooming Room Barbershop in Kellyville showing barber chairs, reception counter, and waiting area"
-                  title="The Grooming Room Barbershop interior - Kellyville"
-                  className="object-cover"
-                  fill
-                />
-              </div>
-            </div>
-          </Card>
-
-          <Card className="flex flex-col justify-center p-8 lg:p-10">
-            <div className="space-y-5">
-              {REASONS.map(({ Icon, color, title, text }) => (
+        <div className="mt-20 space-y-20 sm:space-y-28">
+          {STEPS.map((step, index) => (
+            <div
+              key={step.number}
+              className={`flex flex-col gap-10 md:items-center md:gap-16 ${
+                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+              }`}
+            >
+              <div className="relative w-full md:w-1/2">
                 <div
-                  key={title}
-                  className="flex gap-5 rounded-[24px] bg-[var(--muted)]/60 p-5"
+                  className={`pointer-events-none absolute -top-10 text-[7rem] font-extrabold leading-none text-[rgba(27,28,26,0.05)] sm:text-[9rem] ${
+                    index % 2 === 0 ? "left-0" : "right-0"
+                  }`}
                 >
-                  <div
-                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${color}`}
-                  >
-                    <Icon size={20} />
-                  </div>
+                  {step.number}
+                </div>
+                <h3 className="relative text-3xl font-bold tracking-[-0.02em] text-[var(--foreground)] sm:text-4xl">
+                  {step.title}
+                </h3>
+                <p className="relative mt-6 max-w-xl text-base leading-8 text-[var(--muted-foreground)]">
+                  {step.text}
+                </p>
+              </div>
 
-                  <div>
-                    <h3 className="text-lg font-semibold text-slate-900">
-                      {title}
-                    </h3>
-                    <p className="mt-2 text-base leading-relaxed text-slate-600">
-                      {text}
-                    </p>
+              <div className="w-full md:w-1/2">
+                <div
+                  className={`overflow-hidden rounded-[2rem] shadow-[0_30px_90px_-52px_rgba(27,28,26,0.6)] ${
+                    index % 2 === 0 ? "" : "md:rotate-[2deg]"
+                  }`}
+                >
+                  <div className="relative aspect-video">
+                    <Image
+                      src={step.image}
+                      alt={step.alt}
+                      title={step.imageTitle}
+                      className="object-cover"
+                      fill
+                    />
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
-          </Card>
+          ))}
         </div>
       </div>
     </section>

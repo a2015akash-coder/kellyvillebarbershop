@@ -2,34 +2,42 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbf9f6;
+  --foreground: #1b1c1a;
 
   /* Brand */
-  --brand-accent: #f97316;
-  --brand-accent-strong: #ea580c;
-  --brand-accent-soft: #fff7ed;
+  --brand-accent: #944517;
+  --brand-accent-strong: #b35d2d;
+  --brand-accent-soft: #ffdbcb;
 
   /* UI tokens */
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --border: #e2e8f0;
-  --ring: #cbd5e1;
+  --muted: #f5f3f0;
+  --muted-foreground: #55433b;
+  --border: #dbc1b6;
+  --ring: #887369;
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #1b1c1a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
 }
 
 .section-spacing {

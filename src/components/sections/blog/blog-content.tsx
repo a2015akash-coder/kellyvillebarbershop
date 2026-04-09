@@ -1,27 +1,47 @@
 import type { ContentBlock } from "@/lib/blog-data";
 import { SITE_URL } from "@/lib/seo";
 
+/** All domains that should be treated as internal for link SEO. */
+const INTERNAL_DOMAINS = [
+  SITE_URL,                                  // https://thegroomingroom.com.au
+  "https://kellyvillebarber.com.au",
+  "https://www.kellyvillebarber.com.au",
+  "https://www.thegroomingroom.com.au",
+];
+
 /**
- * Process richtext HTML to add proper rel attributes to links:
- * - Internal links (same domain): rel="follow"
+ * Process richtext HTML to enforce proper rel/target attributes on all links:
+ * - Internal links (own domains, relative, hash): rel="follow"
  * - External links: rel="nofollow noopener noreferrer" target="_blank"
+ *
+ * Strips any existing rel/target attributes first to avoid duplicates.
  */
 function processLinks(html: string): string {
-  return html.replace(
-    /<a\s+([^>]*?)href=["']([^"']+)["']([^>]*?)>/gi,
-    (_match, before: string, href: string, after: string) => {
-      const isInternal =
-        href.startsWith("/") ||
-        href.startsWith("#") ||
-        href.startsWith(SITE_URL);
+  return html.replace(/<a\s[^>]*>/gi, (tag) => {
+    const hrefMatch = tag.match(/href=["']([^"']+)["']/i);
+    if (!hrefMatch) return tag;
 
-      if (isInternal) {
-        return `<a ${before}href="${href}"${after} rel="follow">`;
-      }
+    const href = hrefMatch[1];
 
-      return `<a ${before}href="${href}"${after} rel="nofollow noopener noreferrer" target="_blank">`;
-    },
-  );
+    // Strip existing rel and target attributes
+    const cleaned = tag
+      .replace(/\s*rel=["'][^"']*["']/gi, "")
+      .replace(/\s*target=["'][^"']*["']/gi, "");
+
+    const isInternal =
+      href.startsWith("/") ||
+      href.startsWith("#") ||
+      INTERNAL_DOMAINS.some((d) => href.startsWith(d));
+
+    if (isInternal) {
+      return cleaned.replace(/>$/, ' rel="follow">');
+    }
+
+    return cleaned.replace(
+      />$/,
+      ' rel="nofollow noopener noreferrer" target="_blank">',
+    );
+  });
 }
 
 export default function BlogContent({ blocks }: { blocks: ContentBlock[] }) {

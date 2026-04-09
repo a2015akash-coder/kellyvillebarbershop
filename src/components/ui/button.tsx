@@ -2,18 +2,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 export const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         accent:
-          "bg-[var(--brand-accent)] text-white hover:bg-[var(--brand-accent-strong)] shadow-md",
+          "bg-[var(--brand-accent)] text-white shadow-[0_16px_42px_-28px_rgba(249,115,22,0.95)] hover:-translate-y-0.5 hover:bg-[var(--brand-accent-strong)]",
         secondary:
-          "border border-[var(--border)] bg-white text-slate-900 hover:bg-slate-50 shadow-sm",
+          "border border-[var(--border)] bg-white text-slate-900 shadow-sm hover:-translate-y-0.5 hover:bg-slate-50",
         outline:
-          "border border-[var(--border)] bg-transparent text-slate-700 hover:bg-slate-50",
+          "border border-[var(--border)] bg-transparent text-slate-700 hover:-translate-y-0.5 hover:bg-slate-50",
         ghost: "text-slate-700 hover:bg-slate-100",
-        dark: "bg-slate-900 text-white hover:bg-slate-800",
+        dark: "bg-slate-900 text-white shadow-[0_16px_42px_-28px_rgba(15,23,42,0.95)] hover:-translate-y-0.5 hover:bg-slate-800",
       },
       size: {
         sm: "h-9 px-4 text-sm",
@@ -33,12 +33,7 @@ export const buttonVariants = cva(
 export type ButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants>;
 
-export function Button({
-  className,
-  variant,
-  size,
-  ...props
-}: ButtonProps) {
+export function Button({ className, variant, size, ...props }: ButtonProps) {
   return (
     <button
       className={cn(buttonVariants({ variant, size, className }))}

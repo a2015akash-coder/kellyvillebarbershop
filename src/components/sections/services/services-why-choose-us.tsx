@@ -76,15 +76,15 @@ export default function ServicesWhyChooseUs() {
           </div>
 
           {/* RIGHT CARD */}
-          <div className="flex flex-col justify-center rounded-3xl border border-gray-200 bg-white p-8">
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="flex flex-col justify-center rounded-3xl border border-gray-200 bg-white p-5 sm:p-8">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-5 sm:gap-6">
               {BULLETS.map((item) => (
                 <div key={item.title}>
-                  <h3 className="text-base font-semibold text-gray-900">
+                  <h3 className="text-sm font-semibold text-gray-900 sm:text-base">
                     {item.title}
                   </h3>
-                  <div className="mt-2 h-[3px] w-8 rounded-full bg-orange-500" />
-                  <p className="mt-3 text-sm leading-relaxed text-gray-600">
+                  <div className="mt-1.5 h-[3px] w-8 rounded-full bg-orange-500 sm:mt-2" />
+                  <p className="mt-2 text-xs leading-relaxed text-gray-600 sm:mt-3 sm:text-sm">
                     {item.text}
                   </p>
                 </div>

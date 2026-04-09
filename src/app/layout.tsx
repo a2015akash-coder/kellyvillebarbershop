@@ -1,30 +1,30 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import Navbar from "@/components/navbar";
+import { Inter, Manrope } from "next/font/google";
+import Script from "next/script";
 import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import {
-  SITE_URL,
-  SITE_NAME,
-  DEFAULT_OG_IMAGE,
   BUSINESS_JSON_LD,
+  DEFAULT_OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
 } from "@/lib/seo";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default:
-      "The Grooming Room Barber Shop | Kellyville Barber",
+    default: "The Grooming Room Barber Shop | Kellyville Barber",
     template: "%s",
   },
   description:
@@ -95,33 +95,25 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${manrope.variable} h-full antialiased`}
     >
       <head>
-        {/* Google Tag Manager */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TC5XGDJG');`,
-          }}
-        />
-        {/* End Google Tag Manager */}
-
         {/* Preconnect to Cloudinary */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(BUSINESS_JSON_LD),
-          }}
-        />
       </head>
       <body className="flex min-h-full flex-col">
+        <Script id="google-tag-manager" strategy="afterInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TC5XGDJG');`}
+        </Script>
+        <Script id="business-jsonld" type="application/ld+json">
+          {JSON.stringify(BUSINESS_JSON_LD)}
+        </Script>
+
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
