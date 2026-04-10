@@ -28,7 +28,7 @@ export default function Navbar() {
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-[#fbf9f6]/82 shadow-[0_18px_40px_-34px_rgba(27,28,26,0.45)] backdrop-blur-xl"
-          : "bg-[#fbf9f6]/70 backdrop-blur-md"
+          : "bg-white backdrop-blur-md"
       }`}
     >
       <a

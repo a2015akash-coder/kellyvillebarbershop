@@ -8,12 +8,18 @@ import { ReviewsProvider } from "@/components/sections/home/reviews-context";
 import Testimonials from "@/components/sections/home/testimonials";
 import WhyChooseUs from "@/components/sections/home/why-choose-us";
 import WhyLocalsChooseUs from "@/components/sections/home/why-locals-choose-us";
+import { getGoogleReviews } from "@/lib/google-reviews";
 
 export const dynamic = "force-dynamic";
 
-export default function Home() {
+export default async function Home() {
+  const reviews = await getGoogleReviews().catch((error) => {
+    console.error("Homepage reviews failed to load:", error);
+    return null;
+  });
+
   return (
-    <ReviewsProvider>
+    <ReviewsProvider initialData={reviews}>
       <Hero />
 
       <OurWork />

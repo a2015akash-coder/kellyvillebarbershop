@@ -8,28 +8,15 @@ import {
   useMemo,
   useState,
 } from "react";
+import type {
+  GoogleReview,
+  GoogleReviewsPayload,
+  GoogleReviewsSummary,
+} from "@/lib/google-reviews";
 
-export interface Review {
-  authorName: string;
-  authorPhoto: string;
-  authorUri: string;
-  rating: number;
-  text: string;
-  relativePublishTimeDescription: string;
-  publishTime: string;
-}
-
-export interface Summary {
-  businessName: string;
-  rating: number;
-  userRatingCount: number;
-  googleMapsUri: string;
-}
-
-interface ReviewsPayload {
-  reviews: Review[];
-  summary: Summary;
-}
+export type Review = GoogleReview;
+export type Summary = GoogleReviewsSummary;
+export type ReviewsPayload = GoogleReviewsPayload;
 
 interface ReviewsState extends ReviewsPayload {
   loading: boolean;
@@ -60,6 +47,22 @@ function normalizeReview(review: Partial<Review>): Review {
   };
 }
 
+function normalizePayload(data: Partial<ReviewsPayload> & Partial<Summary>) {
+  const summary = data.summary || data;
+
+  return {
+    summary: {
+      businessName: summary.businessName || "",
+      rating: Number(summary.rating || 0),
+      userRatingCount: Number(summary.userRatingCount || 0),
+      googleMapsUri: summary.googleMapsUri || "",
+    },
+    reviews: Array.isArray(data.reviews)
+      ? data.reviews.map(normalizeReview)
+      : [],
+  };
+}
+
 async function loadReviews() {
   if (reviewsCache) return reviewsCache;
 
@@ -71,17 +74,7 @@ async function loadReviews() {
         throw new Error(data?.error || "Failed to load Google reviews");
       }
 
-      const payload: ReviewsPayload = {
-        summary: {
-          businessName: data.businessName || "",
-          rating: Number(data.rating || 0),
-          userRatingCount: Number(data.userRatingCount || 0),
-          googleMapsUri: data.googleMapsUri || "",
-        },
-        reviews: Array.isArray(data.reviews)
-          ? data.reviews.map(normalizeReview)
-          : [],
-      };
+      const payload = normalizePayload(data);
 
       reviewsCache = payload;
       return payload;
@@ -94,15 +87,32 @@ async function loadReviews() {
   return reviewsRequest;
 }
 
-export function ReviewsProvider({ children }: { children: ReactNode }) {
+export function ReviewsProvider({
+  children,
+  initialData,
+}: {
+  children: ReactNode;
+  initialData?: ReviewsPayload | null;
+}) {
+  const hasServerData = initialData !== undefined;
+  const initialPayload = initialData || reviewsCache;
+
   const [state, setState] = useState<ReviewsState>(() => ({
-    reviews: reviewsCache?.reviews || [],
-    summary: reviewsCache?.summary || EMPTY_SUMMARY,
-    loading: !reviewsCache,
+    reviews: initialPayload?.reviews || [],
+    summary: initialPayload?.summary || EMPTY_SUMMARY,
+    loading: !initialPayload && !hasServerData,
     error: "",
   }));
 
   useEffect(() => {
+    if (hasServerData) {
+      if (initialData) {
+        reviewsCache = initialData;
+      }
+
+      return;
+    }
+
     let ignore = false;
 
     loadReviews()
@@ -127,7 +137,7 @@ export function ReviewsProvider({ children }: { children: ReactNode }) {
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [hasServerData, initialData]);
 
   const value = useMemo(() => state, [state]);
 
