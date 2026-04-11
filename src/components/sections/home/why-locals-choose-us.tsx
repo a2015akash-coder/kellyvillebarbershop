@@ -17,7 +17,7 @@ export default function WhyLocalsChooseUs() {
             </p>
           </div>
 
-          <div className="rounded-[2rem] bg-[#efeeeb] p-8">
+          <div className="rounded-[2rem] bg-[#f3f4f6] p-8">
             <CarFront size={28} className="text-[var(--brand-accent)]" />
             <h4 className="mt-5 text-xl font-bold tracking-[-0.02em] text-[var(--foreground)]">
               Easy access
@@ -27,7 +27,7 @@ export default function WhyLocalsChooseUs() {
             </p>
           </div>
 
-          <div className="rounded-[2rem] bg-[#97481e] p-8 text-white">
+          <div className="rounded-[2rem] bg-[var(--brand-accent-strong)] p-8 text-white">
             <Sparkles size={28} />
             <h4 className="mt-5 text-xl font-bold tracking-[-0.02em]">
               Family friendly
@@ -37,7 +37,7 @@ export default function WhyLocalsChooseUs() {
             </p>
           </div>
 
-          <div className="rounded-[2rem] bg-[#eae8e5] p-8 md:col-span-2">
+          <div className="rounded-[2rem] bg-[#e5e7eb] p-8 md:col-span-2">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
               <div className="hidden h-28 w-28 overflow-hidden rounded-full sm:block">
                 <Image

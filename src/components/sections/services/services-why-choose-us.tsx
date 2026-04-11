@@ -38,7 +38,7 @@ export default function ServicesWhyChooseUs() {
             <h2
               className="bg-clip-text font-semibold leading-tight tracking-tight text-transparent"
               style={{
-                backgroundImage: "linear-gradient(90deg, #0f172a, #E6C35C)",
+                backgroundImage: "linear-gradient(90deg, #0f172a, #ff7a00)",
                 fontSize: "clamp(1.9rem, 3.5vw, 2.4rem)",
               }}
             >

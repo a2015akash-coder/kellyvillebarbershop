@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function WinPage() {
   return (
-    <section className="flex min-h-screen items-start bg-[#d3742a] pt-6 sm:pt-10 lg:items-center lg:pt-0">
+    <section className="flex min-h-screen items-start bg-[#ff7a00] pt-6 sm:pt-10 lg:items-center lg:pt-0">
       <div className="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
           {/* RIGHT (MOBILE FIRST): FORM */}

@@ -4,7 +4,7 @@ import { badgeVariants } from "@/components/ui/badge";
 
 const SERVICES = [
   {
-    title: "The Signature Cut",
+    title: "Men's Haircut",
     label: "Precision cut",
     image:
       "https://res.cloudinary.com/dvtbbuxon/image/upload/c_fill,g_auto:faces,w_800,h_1000,f_auto,q_auto/v1767534115/IMG_5409_shfn4c.jpg",
@@ -13,7 +13,7 @@ const SERVICES = [
     text: "Full consultation, clean shape, wash, and style for everyday wear.",
   },
   {
-    title: "Beard Sculpting",
+    title: "Beard Trims & Beard Shaping",
     label: "Beard work",
     image:
       "https://res.cloudinary.com/dvtbbuxon/image/upload/c_fill,g_auto:faces,w_800,h_1000,f_auto,q_auto/v1768167106/WhatsApp_Image_2026-01-11_at_17.25.03_2_f88hyp.jpg",
@@ -22,12 +22,12 @@ const SERVICES = [
     text: "Detailed trimming, line work, and tidy finishing for a sharper profile.",
   },
   {
-    title: "Colour Refresh",
+    title: "Grey Hair Coloring Services",
     label: "Grey blending",
     image:
       "https://res.cloudinary.com/dvtbbuxon/image/upload/c_fill,g_auto:faces,w_800,h_1000,f_auto,q_auto/v1768167322/WhatsApp_Image_2026-01-11_at_17.25.03_vi332u.jpg",
-    alt: "Grey hair colouring service at The Grooming Room Barbershop",
-    imageTitle: "Grey hair colouring service - Kellyville barber",
+    alt: "Grey hair coloring service at The Grooming Room Barbershop",
+    imageTitle: "Grey hair coloring service - Kellyville barber",
     text: "Subtle colour work and maintenance for a more polished finish.",
   },
 ];
@@ -47,8 +47,9 @@ export default function OurWork() {
           </div>
 
           <p className="max-w-md text-sm leading-7 text-[var(--muted-foreground)] sm:text-base">
-            Every service is tailored with practical consultation and careful
-            finishing, so the result looks sharp beyond the first day.
+            We provide consistent barbering services so you leave well-groomed and comfortable. Our barbers take the time to get the cut right.
+
+
           </p>
         </div>
 
@@ -59,7 +60,7 @@ export default function OurWork() {
               href="/mens-haircuts-beard-trims-kellyville"
               className={`group ${index === 1 ? "md:translate-y-10" : ""}`}
             >
-              <div className="relative mb-6 aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#ece8e3]">
+              <div className="relative mb-6 aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#e5e7eb]">
                 <Image
                   src={service.image}
                   alt={service.alt}
@@ -75,7 +76,7 @@ export default function OurWork() {
                     className={badgeVariants({
                       variant: "secondary",
                       className:
-                        "mb-3 bg-[#f5f3f0] text-[var(--brand-accent)] shadow-none",
+                        "mb-3 bg-[#f5f5f5] text-[var(--brand-accent)] shadow-none",
                     })}
                   >
                     {service.label}

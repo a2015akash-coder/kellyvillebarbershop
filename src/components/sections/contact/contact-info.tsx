@@ -37,7 +37,7 @@ export default function ContactInfo() {
             className="font-semibold tracking-tight"
             style={{
               fontSize: "clamp(2rem, 4vw, 2.8rem)",
-              backgroundImage: "linear-gradient(90deg, #0f172a, #E6C35C)",
+              backgroundImage: "linear-gradient(90deg, #0f172a, #ff7a00)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}

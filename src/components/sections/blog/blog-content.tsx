@@ -46,7 +46,7 @@ function processLinks(html: string): string {
 
 export default function BlogContent({ blocks }: { blocks: ContentBlock[] }) {
   return (
-    <article className="prose prose-gray mt-8 max-w-none prose-h2:mb-4 prose-h2:mt-12 prose-h2:font-semibold prose-h2:text-[#F4511E] prose-a:font-medium prose-a:text-blue-600 prose-a:no-underline prose-a:transition-colors hover:prose-a:underline">
+    <article className="prose prose-gray mt-8 max-w-none prose-h2:mb-4 prose-h2:mt-12 prose-h2:font-semibold prose-h2:text-[#ff7a00] prose-a:font-medium prose-a:text-blue-600 prose-a:no-underline prose-a:transition-colors hover:prose-a:underline">
       {blocks.map((block, i) => {
         if (block.type === "heading") {
           return <h2 key={i}>{block.text}</h2>;

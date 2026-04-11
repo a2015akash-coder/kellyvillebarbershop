@@ -1,11 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getAllServices, type Service } from "@/lib/service-data";
+import {
+  getAllServices,
+  getServiceDisplayTitle,
+  getServiceSummary,
+  type Service,
+} from "@/lib/service-data";
 
 const LOGO_URL =
   "https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_300/v1768612130/IMG_4966_lxnwpl.png";
 
 const SKELETON_COUNT = 9;
+const SKELETON_IDS = Array.from(
+  { length: SKELETON_COUNT },
+  (_, index) => `service-skeleton-${index + 1}`,
+);
 
 function SkeletonCard({ featured = false }: { featured?: boolean }) {
   return (
@@ -14,7 +23,6 @@ function SkeletonCard({ featured = false }: { featured?: boolean }) {
         featured ? "col-span-2 lg:col-span-1" : ""
       }`}
     >
-      {/* Image placeholder with logo */}
       <div
         className={`relative flex w-full items-center justify-center bg-gray-50 ${
           featured ? "aspect-[16/9] sm:aspect-[4/3]" : "aspect-[4/3]"
@@ -29,7 +37,6 @@ function SkeletonCard({ featured = false }: { featured?: boolean }) {
         />
       </div>
 
-      {/* Text skeleton */}
       <div className="p-4 sm:p-6">
         <div className="h-4 w-3/4 animate-pulse rounded bg-gray-100 sm:h-5" />
         <div className="mt-2 h-[3px] w-8 rounded-full bg-orange-200 sm:w-10" />
@@ -42,45 +49,59 @@ function SkeletonCard({ featured = false }: { featured?: boolean }) {
   );
 }
 
-function ServiceCard({ service, featured }: { service: Service; featured: boolean }) {
+function ServiceCard({
+  service,
+  featured,
+}: {
+  service: Service;
+  featured: boolean;
+}) {
   const cardClass = `group overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-xl sm:rounded-3xl ${
     featured ? "col-span-2 lg:col-span-1" : ""
   }`;
 
-  const inner = (
-    <>
+  return (
+    <Link
+      href={`/mens-haircuts-beard-trims-kellyville/${service.slug}`}
+      className={cardClass}
+    >
       <div
         className={`relative w-full overflow-hidden bg-gray-100 ${
           featured ? "aspect-[16/9] sm:aspect-[4/3]" : "aspect-[4/3]"
         }`}
       >
-        <Image
-          src={service.coverImage}
-          alt={service.coverImageAlt}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
-        />
+        {service.hero.image ? (
+          <Image
+            src={service.hero.image}
+            alt={service.hero.imageAlt}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,#f3ede6_0%,#ece1d2_100%)]" />
+        )}
       </div>
 
       <div className="p-4 sm:p-6">
         <h3 className="text-sm font-semibold text-gray-900 sm:text-lg">
-          {service.title}
+          {getServiceDisplayTitle(service)}
         </h3>
         <div className="mt-1.5 h-[3px] w-8 rounded-full bg-orange-500 sm:mt-2 sm:w-10" />
 
-        {service.price && (
+        {(service.duration || service.isRecommended) && (
           <p className="mt-2 text-xs font-semibold text-orange-600 sm:mt-3 sm:text-sm">
-            {service.price}
-            {service.duration && (
-              <span className="ml-1.5 font-normal text-gray-500 sm:ml-2">
-                · {service.duration}
+            {service.isRecommended ? "Most booked" : "Tailored service"}
+            {service.duration ? (
+              <span className="ml-2 font-normal text-gray-500">
+                {" - "}
+                {service.duration}
               </span>
-            )}
+            ) : null}
           </p>
         )}
 
         <p className="mt-2 hidden text-sm leading-relaxed text-gray-600 sm:block sm:mt-3">
-          {service.excerpt}
+          {getServiceSummary(service)}
         </p>
 
         <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-orange-600 sm:mt-4 sm:text-sm">
@@ -90,6 +111,7 @@ function ServiceCard({ service, featured }: { service: Service; featured: boolea
             height="14"
             viewBox="0 0 24 24"
             fill="none"
+            aria-hidden="true"
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
@@ -101,15 +123,6 @@ function ServiceCard({ service, featured }: { service: Service; featured: boolea
           </svg>
         </span>
       </div>
-    </>
-  );
-
-  return (
-    <Link
-      href={`/mens-haircuts-beard-trims-kellyville/${service.slug}`}
-      className={cardClass}
-    >
-      {inner}
     </Link>
   );
 }
@@ -120,7 +133,7 @@ export default async function OurService() {
   try {
     services = await getAllServices();
   } catch {
-    // Firestore unavailable — will show skeleton
+    // Firestore unavailable - will show skeleton
   }
 
   const isEmpty = services.length === 0;
@@ -128,12 +141,11 @@ export default async function OurService() {
   return (
     <section className="bg-white section-spacing">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        {/* HEADER */}
         <div className="mb-16 max-w-2xl">
           <h2
             className="bg-clip-text font-semibold leading-tight tracking-tight text-transparent"
             style={{
-              backgroundImage: "linear-gradient(90deg, #0f172a, #E6C35C)",
+              backgroundImage: "linear-gradient(90deg, #0f172a, #ff7a00)",
               fontSize: "clamp(2.3rem, 4.8vw, 3.3rem)",
             }}
           >
@@ -145,17 +157,16 @@ export default async function OurService() {
           </p>
         </div>
 
-        {/* GRID */}
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-10">
           {isEmpty
-            ? Array.from({ length: SKELETON_COUNT }, (_, i) => (
-                <SkeletonCard key={i} featured={i === 0} />
+            ? SKELETON_IDS.map((id, index) => (
+                <SkeletonCard key={id} featured={index === 0} />
               ))
-            : services.map((service, idx) => (
+            : services.map((service, index) => (
                 <ServiceCard
                   key={service.slug}
                   service={service}
-                  featured={idx === 0}
+                  featured={index === 0}
                 />
               ))}
         </div>

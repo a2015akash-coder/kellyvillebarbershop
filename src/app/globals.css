@@ -2,21 +2,21 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #fbf9f6;
-  --foreground: #1b1c1a;
+  --background: #ffffff;
+  --foreground: #111827;
 
   /* Brand */
-  --brand-accent: #944517;
-  --brand-accent-strong: #b35d2d;
-  --brand-accent-soft: #ffdbcb;
+  --brand-accent: #ff7a00;
+  --brand-accent-strong: #ea6a00;
+  --brand-accent-soft: #fff3e6;
 
   /* UI tokens */
-  --muted: #f5f3f0;
-  --muted-foreground: #55433b;
-  --border: #dbc1b6;
-  --ring: #887369;
+  --muted: #f5f5f5;
+  --muted-foreground: #4b5563;
+  --border: #e5e7eb;
+  --ring: #9ca3af;
   --card: #ffffff;
-  --card-foreground: #1b1c1a;
+  --card-foreground: #111827;
 }
 
 @theme inline {

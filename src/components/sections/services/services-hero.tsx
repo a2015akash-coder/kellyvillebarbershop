@@ -7,7 +7,7 @@ const HERO_IMAGE_URL =
 
 export default function ServicesHero() {
   return (
-    <section className="relative overflow-hidden bg-[#F8F6F2] pb-14 pt-16">
+    <section className="relative overflow-hidden bg-[#f9fafb] pb-14 pt-16">
       {/* SEO IMAGE (indexable, not visible) */}
       <img
         src={HERO_IMAGE_URL}
@@ -50,7 +50,7 @@ export default function ServicesHero() {
         <h1
           className="max-w-[22ch] bg-clip-text font-semibold leading-[1.15] tracking-tight text-transparent sm:leading-tight"
           style={{
-            backgroundImage: "linear-gradient(90deg, #0f172a, #E6C35C)",
+            backgroundImage: "linear-gradient(90deg, #0f172a, #ff7a00)",
             fontSize: "clamp(2rem, 4vw, 3rem)",
           }}
         >
@@ -87,7 +87,7 @@ export default function ServicesHero() {
             href="https://www.google.com/maps/dir/?api=1&destination=The+Grooming+Room+Barbershop+Kellyville+NSW+2155"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-[#FFF3E6] px-10 py-4 font-semibold text-[#7A3E00] transition hover:bg-[#FFE6CF]"
+            className="inline-flex items-center justify-center rounded-full bg-[#FFF3E6] px-10 py-4 font-semibold text-[#ea6a00] transition hover:bg-[#FFE6CF]"
           >
             Get Directions
           </a>
