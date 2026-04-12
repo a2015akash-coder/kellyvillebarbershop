@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowUpRight, CheckCircle2, MapPin } from "lucide-react";
 import Image from "next/image";
 import { PHONE_LINK } from "@/lib/constants";
 
@@ -24,8 +23,7 @@ const DIRECTIONS_LINK =
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[78vh] items-center overflow-hidden px-4 pt-10 sm:px-8 lg:px-8">
-      
+<section className="relative flex min-h-[62vh] sm:min-h-[78vh] items-center overflow-hidden px-4 pt-6 sm:px-8 lg:px-8">      
       {/* Background */}
       <div className="absolute inset-0">
         <Image
@@ -52,35 +50,29 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 mx-auto w-full max-w-screen-xl">
-        <div className="max-w-3xl sm:max-w-[48rem] text-center sm:text-left mx-auto sm:mx-0">
+        <div className="max-w-3xl sm:max-w-[48rem] text-left">
 
           {/* Headline */}
-          <h1 className="mt-4 font-semibold leading-[1.02] tracking-[-0.035em] text-white">
-            <span className="block text-[clamp(1.9rem,6vw,4.6rem)]">
-              Premium barbershop
-            </span>
-            <span className="block text-[clamp(2.1rem,6.5vw,5rem)] text-white sm:whitespace-nowrap">
-              in Kellyville
-            </span>
-          </h1>
+        <h1 className="mt-4 font-semibold leading-[1.02] tracking-[-0.035em] text-white">
+  <span className="block text-[clamp(2rem,6vw,4.8rem)]">
+    Premium barbershop
+  </span>
+  <span className="block text-[clamp(2rem,6vw,4.8rem)] sm:whitespace-nowrap">
+    in Kellyville
+  </span>
+</h1>
 
           {/* Description */}
-          <p className="mt-4 max-w-xl mx-auto sm:mx-0 text-sm leading-7 text-white/75 sm:text-base">
+          <p className="mt-4 max-w-xl text-sm leading-7 text-white/75 sm:text-base">
             The Grooming Room Barber Shop provides men&apos;s haircuts, skin
             fades, coloring and beard trimming services.
           </p>
 
           {/* Highlights */}
-          <div className="mt-5 space-y-2.5 flex flex-col items-center sm:items-start">
+          <div className="mt-5 space-y-2.5">
             {HIGHLIGHTS.map((item) => (
-              <div
-                key={item}
-                className="flex items-center gap-3 justify-center sm:justify-start"
-              >
-                <CheckCircle2
-                  size={20}
-                  className="shrink-0 text-[var(--brand-accent)]"
-                />
+              <div key={item} className="flex items-center gap-3">
+                <span className="h-2 w-2 rounded-full bg-[var(--brand-accent)]" />
                 <span className="text-[0.98rem] sm:text-[1.02rem] text-white/90">
                   {item}
                 </span>
@@ -89,29 +81,27 @@ export default function Hero() {
           </div>
 
           {/* CTA */}
-          <div className="mt-6 flex flex-row flex-wrap justify-center gap-3 sm:flex-nowrap sm:justify-start sm:items-center">
-            <a
-              href={PHONE_LINK}
-              aria-label="Call now"
-              className="flex-1 sm:flex-none group inline-flex justify-center items-center gap-3 rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md transition-all duration-300 hover:border-[var(--brand-accent)] hover:bg-[var(--brand-accent)]"
-            >
-              <span>Call Now</span>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-black transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                <ArrowUpRight size={16} strokeWidth={2.4} />
-              </span>
-            </a>
+         <div className="mt-6 flex flex-row flex-wrap justify-start gap-3 sm:flex-nowrap sm:items-center">
 
-            <a
-              href={DIRECTIONS_LINK}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Get directions"
-              className="flex-1 sm:flex-none inline-flex justify-center items-center gap-2 rounded-full border border-white/15 bg-black/20 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white/90 backdrop-blur-md transition-all duration-300 hover:border-white/30 hover:bg-white/10 hover:text-white"
-            >
-              <MapPin size={16} strokeWidth={2.2} />
-              <span>Get Directions</span>
-            </a>
-          </div>
+  <a
+    href={PHONE_LINK}
+    aria-label="Call now"
+    className="flex-1 sm:flex-none inline-flex justify-center items-center whitespace-nowrap rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md transition-all duration-300 hover:border-[var(--brand-accent)] hover:bg-[var(--brand-accent)]"
+  >
+    Call Now
+  </a>
+
+  <a
+    href={DIRECTIONS_LINK}
+    target="_blank"
+    rel="noreferrer"
+    aria-label="Get directions"
+    className="flex-1 sm:flex-none inline-flex justify-center items-center whitespace-nowrap rounded-full border border-white/15 bg-black/20 px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white/90 backdrop-blur-md transition-all duration-300 hover:border-white/30 hover:bg-white/10 hover:text-white"
+  >
+    Get Directions
+  </a>
+
+</div>
 
         </div>
       </div>

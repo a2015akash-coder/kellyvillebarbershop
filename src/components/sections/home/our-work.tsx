@@ -53,10 +53,7 @@ export default function OurWork() {
             </h2>
           </div>
 
-          <p className="max-w-md text-sm leading-7 text-[var(--muted-foreground)] sm:text-base">
-            We provide consistent barbering services so you leave well-groomed
-            and comfortable. Our barbers take the time to get the cut right.
-          </p>
+      
         </div>
 
         {/* Grid */}
