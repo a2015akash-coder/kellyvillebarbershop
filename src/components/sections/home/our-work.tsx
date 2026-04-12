@@ -8,7 +8,7 @@ import { badgeVariants } from "@/components/ui/badge";
 const SERVICES = [
   {
     title: "Men's Haircut",
-    label: "Precision cut",
+   
     image:
       "https://res.cloudinary.com/dvtbbuxon/image/upload/c_fill,g_auto:faces,w_800,h_1000,f_auto,q_auto/v1767534115/IMG_5409_shfn4c.jpg",
     alt: "Men's haircut service at The Grooming Room Barbershop",
@@ -17,7 +17,7 @@ const SERVICES = [
   },
   {
     title: "Beard Trims & Beard Shaping",
-    label: "Beard work",
+   
     image:
       "https://res.cloudinary.com/dvtbbuxon/image/upload/c_fill,g_auto:faces,w_800,h_1000,f_auto,q_auto/v1768167106/WhatsApp_Image_2026-01-11_at_17.25.03_2_f88hyp.jpg",
     alt: "Beard trimming service at The Grooming Room Barbershop",
@@ -26,7 +26,7 @@ const SERVICES = [
   },
   {
     title: "Grey Hair Coloring Services",
-    label: "Grey blending",
+  
     image:
       "https://res.cloudinary.com/dvtbbuxon/image/upload/c_fill,g_auto:faces,w_800,h_1000,f_auto,q_auto/v1768167322/WhatsApp_Image_2026-01-11_at_17.25.03_vi332u.jpg",
     alt: "Grey hair coloring service at The Grooming Room Barbershop",
@@ -84,7 +84,7 @@ export default function OurWork() {
                         "mb-2 bg-[#f5f5f5] text-[var(--brand-accent)] shadow-none",
                     })}
                   >
-                    {service.label}
+                 
                   </span>
 
                   <h3 className="text-2xl font-bold tracking-[-0.02em] text-[var(--foreground)]">
