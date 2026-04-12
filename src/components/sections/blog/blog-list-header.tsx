@@ -19,19 +19,10 @@ export default function BlogListHeader({
   return (
     <>
       <div className="mx-auto mb-16 max-w-3xl text-center">
-        <span className="mb-4 inline-block rounded-full bg-gray-200 px-4 py-1 text-sm font-medium text-gray-700">
-          Blog
+        <span className="mb-6 inline-block rounded-full bg-gray-200 px-6 py-1 text-large font-bold text-gray-700">
+          Blogs
         </span>
-
-        <h1 className="text-3xl font-semibold text-gray-900 sm:text-4xl">
-          Discover our latest insights
-        </h1>
-
-        <p className="mt-4 text-gray-600">
-          Practical advice, expert tips, and updates.
-        </p>
-
-        <div className="mx-auto mt-8 flex max-w-xl flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+        <div className="mx-auto  flex max-w-xl flex-col items-stretch gap-3 sm:flex-row sm:items-center">
           <input
             type="text"
             placeholder="Search by title, category, or keyword"

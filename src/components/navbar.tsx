@@ -12,7 +12,7 @@ const LOGO_URL =
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/Services" },
+  { label: "Services", href: "/mens-haircuts-beard-trims-kellyville" },
   { label: "Blogs", href: "/blogs" },
   { label: "Contact", href: "/contact" },
   { label: "Promotions", href: "/monthly-draw-kellyville-barber" },

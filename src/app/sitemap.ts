@@ -1,24 +1,10 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
-import { getAllServices } from "@/lib/service-data";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  let serviceRoutes: MetadataRoute.Sitemap = [];
-  try {
-    const services = await getAllServices();
-    serviceRoutes = services.map((s) => ({
-        url: `${SITE_URL}/mens-haircuts-beard-trims-kellyville/${s.slug}`,
-        lastModified: now,
-        changeFrequency: "monthly" as const,
-        priority: 0.8,
-      }));
-  } catch {
-    // Firestore unavailable — skip dynamic service URLs
-  }
-
-  const staticRoutes: MetadataRoute.Sitemap = [
+  return [
     {
       url: SITE_URL,
       lastModified: now,
@@ -56,6 +42,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     },
   ];
-
-  return [...staticRoutes, ...serviceRoutes];
 }
