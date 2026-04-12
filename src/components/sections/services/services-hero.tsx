@@ -49,7 +49,7 @@ export default function ServicesHero() {
             <span className="block text-[clamp(2rem,5vw,4.6rem)]">
               & Expert Beard
             </span>
-            <span className="block text-[clamp(2.1rem,5.5vw,5rem)] text-[var(--brand-accent)] sm:whitespace-nowrap">
+            <span className="block text-[clamp(2.1rem,5.5vw,5rem)] text-white sm:whitespace-nowrap">
               Barbers
             </span>
           </h1>

@@ -59,7 +59,7 @@ export default function Hero() {
             <span className="block text-[clamp(1.9rem,6vw,4.6rem)]">
               Premium barbershop
             </span>
-            <span className="block text-[clamp(2.1rem,6.5vw,5rem)] text-[var(--brand-accent)] sm:whitespace-nowrap">
+            <span className="block text-[clamp(2.1rem,6.5vw,5rem)] text-white sm:whitespace-nowrap">
               in Kellyville
             </span>
           </h1>
