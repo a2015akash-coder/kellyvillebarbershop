@@ -49,7 +49,7 @@ export default function WhyLocalsChooseUs() {
             <div className="overflow-hidden rounded-[24px] bg-gray-100">
               <div className="relative aspect-video">
                 <Image
-                  src="https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_1200,c_limit/v1767704060/interro_veoi1z.webp"
+                  src="https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_1200,c_limit/v1767704060/39f80663-2183-43e8-9b0d-a8a8df717517_bfnmjt.jpg"
                   alt="Interior of The Grooming Room Barbershop in Kellyville showing barber chairs, reception counter, and waiting area"
                   title="The Grooming Room Barbershop interior - Kellyville"
                   className="object-cover"

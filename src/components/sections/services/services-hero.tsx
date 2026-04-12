@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 
 const HERO_IMAGE_URL =
-  "https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_2400,c_limit/v1767704060/39f80663-2183-43e8-9b0d-a8a8df717517_bfnmjt.jpg";
+  "https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_2400,c_limit/v1767704060/interro_veoi1z.webp";
 
 const SERVICE_HIGHLIGHTS = [
   "Walk-ins Welcome",
