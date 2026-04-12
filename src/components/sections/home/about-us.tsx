@@ -12,14 +12,16 @@ export default function AboutUs() {
           <div className="relative">
             <div className="absolute -inset-4 hidden rounded-3xl bg-[var(--muted)] lg:block" />
             <div className="relative overflow-hidden rounded-[28px] border border-[var(--border)] bg-white/80 p-3 shadow-[0_24px_70px_-36px_rgba(15,23,42,0.45)]">
-              <Image
-                src="https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_900/v1767623965/IMG_2628_wzzrmi.jpg"
-                alt="Interior view of The Grooming Room Barbershop in Kellyville"
-                title="Inside The Grooming Room Barbershop - Kellyville"
-                className="h-[320px] w-full rounded-[22px] object-cover"
-                width={900}
-                height={320}
-              />
+              <div className="relative h-[320px] w-full overflow-hidden rounded-[22px]">
+                <Image
+                  src="https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_900/v1767623965/IMG_2628_wzzrmi.jpg"
+                  alt="Interior view of The Grooming Room Barbershop in Kellyville"
+                  title="Inside The Grooming Room Barbershop - Kellyville"
+                  fill
+                  sizes="(max-width: 1023px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
 

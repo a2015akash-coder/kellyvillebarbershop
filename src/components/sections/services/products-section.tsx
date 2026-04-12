@@ -52,6 +52,7 @@ export default function ProductsSection() {
                   alt={product.alt}
                   title={product.imgTitle}
                   fill
+                  sizes="(max-width: 639px) 280px, (max-width: 1023px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>

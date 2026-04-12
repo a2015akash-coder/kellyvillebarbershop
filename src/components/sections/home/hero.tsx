@@ -24,7 +24,7 @@ const DIRECTIONS_LINK = "https://maps.google.com/?q=The+Grooming+Room+Kellyville
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[78vh] items-center overflow-hidden px-4 pt-14 sm:px-6 lg:px-8">
+    <section className="relative flex min-h-[78vh] items-center overflow-hidden px-4 pt-10 sm:px-8 lg:px-8">
       <div className="absolute inset-0">
         <Image
           src={HERO_IMAGE_MOBILE}
@@ -53,15 +53,14 @@ export default function Hero() {
       <div className="relative z-10 mx-auto w-full max-w-screen-xl">
         <div className="max-w-3xl text-left sm:max-w-[44rem]">
           <h1 className="mt-6 text-[clamp(2rem,5.4vw,4.9rem)] font-semibold leading-[0.94] tracking-[-0.045em] text-white">
-            <span className="block whitespace-nowrap">Premium barber shop</span>
-            <span className="mt-1 block whitespace-nowrap text-[var(--brand-accent)]">
-              in Kellyville
+            <span className="block whitespace-nowrap">Premium barber <span className=" text-[var(--brand-accent)]">Shop</span>   
             </span>
+
           </h1>
 
           <p className="mt-5 max-w-xl text-sm leading-7 text-white/74 sm:text-base">
-            Sharp cuts, clean fades, and refined grooming in a space built for
-            modern Kellyville locals.
+            The Grooming Room Barber Shop provides men&apos;s haircuts, skin
+            fades, coloring and beard trimming services in Kellyville.
           </p>
 
           <div className="mt-6 space-y-3">
@@ -84,7 +83,7 @@ export default function Hero() {
               aria-label="Book an appointment"
               className="group inline-flex items-center gap-3 rounded-full border border-white/16 bg-white/10 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md transition-all duration-300 hover:border-[var(--brand-accent)] hover:bg-[var(--brand-accent)] hover:text-white"
             >
-              <span>Book Now</span>
+              <span>Call Now</span>
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-black transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                 <ArrowUpRight size={16} strokeWidth={2.4} />
               </span>

@@ -1,32 +1,138 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { PHONE_NUMBER, PHONE_LINK } from "@/lib/constants";
+import Link, { useLinkStatus } from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { PHONE_LINK, PHONE_NUMBER } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 const LOGO_URL =
   "https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_300/v1768612130/IMG_4966_lxnwpl.png";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/mens-haircuts-beard-trims-kellyville" },
+  { label: "Services", href: "/Services" },
   { label: "Blogs", href: "/blogs" },
   { label: "Contact", href: "/contact" },
   { label: "Promotions", href: "/monthly-draw-kellyville-barber" },
 ];
 
+function DesktopPendingHint() {
+  const { pending } = useLinkStatus();
+
+  return (
+    <span
+      aria-hidden
+      className={cn(
+        "pointer-events-none absolute inset-x-0 -bottom-2 h-[2px] overflow-hidden rounded-full opacity-0 transition-opacity duration-150",
+        pending && "opacity-100",
+      )}
+    >
+      <span className={cn("nav-link-pending", pending && "is-pending")} />
+    </span>
+  );
+}
+
+function MobilePendingHint() {
+  const { pending } = useLinkStatus();
+
+  return (
+    <span
+      aria-hidden
+      className={cn("nav-link-dot shrink-0", pending && "is-pending")}
+    />
+  );
+}
+
+function NavLinkItem({
+  href,
+  label,
+  isActive,
+  mobile = false,
+  onNavigate,
+}: {
+  href: string;
+  label: string;
+  isActive: boolean;
+  mobile?: boolean;
+  onNavigate?: () => void;
+}) {
+  const router = useRouter();
+
+  const warmRoute = () => {
+    void router.prefetch(href);
+  };
+
+  if (mobile) {
+    return (
+      <Link
+        href={href}
+        onClick={onNavigate}
+        onMouseEnter={warmRoute}
+        onFocus={warmRoute}
+        onTouchStart={warmRoute}
+        className={cn(
+          "flex items-center justify-between gap-3 transition hover:text-white",
+          isActive ? "text-white" : "text-gray-200",
+        )}
+        aria-current={isActive ? "page" : undefined}
+      >
+        <span>{label}</span>
+        <MobilePendingHint />
+      </Link>
+    );
+  }
+
+  return (
+    <Link
+      href={href}
+      onMouseEnter={warmRoute}
+      onFocus={warmRoute}
+      onTouchStart={warmRoute}
+      className={cn(
+        "relative transition-colors hover:text-white after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300",
+        isActive
+          ? "text-white after:w-full"
+          : "text-gray-200 after:w-0 hover:after:w-full",
+      )}
+      aria-current={isActive ? "page" : undefined}
+    >
+      {label}
+      <DesktopPendingHint />
+    </Link>
+  );
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const warmRoutes = () => {
+      NAV_ITEMS.filter((item) => item.href !== pathname).forEach((item) => {
+        void router.prefetch(item.href);
+      });
+    };
+
+    const requestIdle = window.requestIdleCallback;
+
+    if (requestIdle) {
+      const idleId = requestIdle(() => warmRoutes());
+      return () => window.cancelIdleCallback(idleId);
+    }
+
+    const timeoutId = window.setTimeout(warmRoutes, 250);
+    return () => window.clearTimeout(timeoutId);
+  }, [pathname, router]);
 
   return (
     <header
@@ -64,17 +170,11 @@ export default function Navbar() {
                 const isActive = pathname === item.href;
                 return (
                   <li key={item.label}>
-                    <Link
+                    <NavLinkItem
                       href={item.href}
-                      className={`relative transition-colors hover:text-white after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-orange-500 after:transition-all after:duration-300 ${
-                        isActive
-                          ? "text-white after:w-full"
-                          : "text-gray-200 after:w-0 hover:after:w-full"
-                      }`}
-                      aria-current={isActive ? "page" : undefined}
-                    >
-                      {item.label}
-                    </Link>
+                      label={item.label}
+                      isActive={isActive}
+                    />
                   </li>
                 );
               })}
@@ -110,6 +210,7 @@ export default function Navbar() {
             >
               <svg
                 className="h-6 w-6"
+                aria-hidden="true"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -118,11 +219,7 @@ export default function Navbar() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d={
-                    open
-                      ? "M6 18L18 6M6 6l12 12"
-                      : "M4 6h16M4 12h16M4 18h16"
-                  }
+                  d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
                 />
               </svg>
             </button>
@@ -140,14 +237,13 @@ export default function Navbar() {
                 const isActive = pathname === item.href;
                 return (
                   <li key={item.label}>
-                    <Link
+                    <NavLinkItem
                       href={item.href}
-                      onClick={() => setOpen(false)}
-                      className={`transition hover:text-white ${isActive ? "text-white" : "text-gray-200"}`}
-                      aria-current={isActive ? "page" : undefined}
-                    >
-                      {item.label}
-                    </Link>
+                      label={item.label}
+                      isActive={isActive}
+                      mobile
+                      onNavigate={() => setOpen(false)}
+                    />
                   </li>
                 );
               })}

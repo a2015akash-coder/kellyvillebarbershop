@@ -38,18 +38,14 @@ export default function OurWork() {
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--brand-accent)]">
-              The Menu
-            </div>
             <h2 className="mt-4 text-4xl font-extrabold tracking-[-0.03em] text-[var(--foreground)] sm:text-5xl">
-              Crafted Services
+              Our Services
             </h2>
           </div>
 
           <p className="max-w-md text-sm leading-7 text-[var(--muted-foreground)] sm:text-base">
-            We provide consistent barbering services so you leave well-groomed and comfortable. Our barbers take the time to get the cut right.
-
-
+            We provide consistent barbering services so you leave well-groomed
+            and comfortable. Our barbers take the time to get the cut right.
           </p>
         </div>
 
@@ -67,6 +63,7 @@ export default function OurWork() {
                   title={service.imageTitle}
                   className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   fill
+                  sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                 />
               </div>
 

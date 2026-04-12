@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { PHONE_LINK, DIRECTIONS_LINK } from "@/lib/constants";
+import { DIRECTIONS_LINK, PHONE_LINK } from "@/lib/constants";
 
 const BULLETS = [
   {
@@ -51,6 +51,7 @@ export default function ServicesWhyChooseUs() {
                   src="https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_1200,c_limit/v1767729569/Gemini_Generated_Image_5citxn5citxn5cit_wmnse9.png"
                   alt="Inside the barbershop"
                   fill
+                  sizes="(max-width: 1023px) 100vw, 50vw"
                   className="object-cover"
                 />
               </div>

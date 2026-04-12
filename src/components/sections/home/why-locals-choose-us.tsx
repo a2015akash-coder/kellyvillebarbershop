@@ -1,65 +1,90 @@
-import { CarFront, Scissors, Sparkles } from "lucide-react";
+import { MapPin, Scissors, ShieldCheck, Star } from "lucide-react";
 import Image from "next/image";
+import { Card } from "@/components/ui/card";
+import SectionHeading from "@/components/ui/section-heading";
+
+const REASONS = [
+  {
+    Icon: Scissors,
+    color: "bg-blue-50 text-blue-600",
+    title: "Skilled Barbers",
+    text: "We provide haircuts, beard trims, and grooming services for men and children in Kellyville and nearby areas.",
+  },
+  {
+    Icon: Star,
+    color: "bg-yellow-50 text-yellow-700",
+    title: "Walk-Ins Welcome",
+    text: "No booking required. Walk in during opening hours for a haircut or beard trim.",
+  },
+  {
+    Icon: ShieldCheck,
+    color: "bg-orange-50 text-orange-600",
+    title: "Community Pricing",
+    text: "Special pricing is available for kids, seniors, and new customers.",
+  },
+  {
+    Icon: MapPin,
+    color: "bg-blue-50 text-blue-600",
+    title: "Convenient Location",
+    text: "Located at Kellyville Village Shopping Centre with free parking and nearby shops.",
+  },
+];
 
 export default function WhyLocalsChooseUs() {
   return (
-    <section className="bg-[var(--background)] py-24 sm:py-32">
+    <section className="bg-gray-50 section-spacing">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:grid-rows-2 md:gap-6">
-          <div className="rounded-[2rem] bg-[var(--brand-accent)] p-8 text-white md:col-span-2 md:row-span-2 md:p-12">
-            <Scissors size={40} />
-            <h3 className="mt-8 max-w-sm text-4xl font-extrabold tracking-[-0.03em]">
-              Masters of the Craft
-            </h3>
-            <p className="mt-5 max-w-md text-base leading-8 text-white/80">
-              Clean fades, sharp lines, classic cuts, beard work, and a steady
-              hand that keeps the final result polished.
-            </p>
-          </div>
+        <div className="grid grid-cols-1 items-stretch gap-16 lg:grid-cols-2 lg:gap-20">
+          <Card className="flex flex-col gap-10 p-8 lg:p-10">
+            <div id="why-choose-us">
+              <SectionHeading
+                eyebrow="Why Choose Us"
+                title="Why visit The Grooming Room Barber Shop"
+                description="We focus on the basics done right - quality haircuts, friendly service, and a clean, relaxed space that keeps locals coming back."
+                className="max-w-lg"
+                titleClassName="text-[clamp(1.85rem,3.2vw,2.6rem)]"
+              />
+            </div>
 
-          <div className="rounded-[2rem] bg-[#f3f4f6] p-8">
-            <CarFront size={28} className="text-[var(--brand-accent)]" />
-            <h4 className="mt-5 text-xl font-bold tracking-[-0.02em] text-[var(--foreground)]">
-              Easy access
-            </h4>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted-foreground)]">
-              Kellyville Village location with free parking close by.
-            </p>
-          </div>
-
-          <div className="rounded-[2rem] bg-[var(--brand-accent-strong)] p-8 text-white">
-            <Sparkles size={28} />
-            <h4 className="mt-5 text-xl font-bold tracking-[-0.02em]">
-              Family friendly
-            </h4>
-            <p className="mt-3 text-sm leading-7 text-white/80">
-              A relaxed local shop for men, seniors, and kids.
-            </p>
-          </div>
-
-          <div className="rounded-[2rem] bg-[#e5e7eb] p-8 md:col-span-2">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-              <div className="hidden h-28 w-28 overflow-hidden rounded-full sm:block">
+            <div className="overflow-hidden rounded-[24px] bg-gray-100">
+              <div className="relative aspect-video">
                 <Image
-                  src="https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_600/v1768167196/WhatsApp_Image_2026-01-11_at_17.25.04_tmugsj.jpg"
-                  alt="The Grooming Room Barbershop in Kellyville"
-                  title="The Grooming Room Barbershop - Kellyville"
-                  width={112}
-                  height={112}
-                  className="h-full w-full object-cover"
+                  src="https://res.cloudinary.com/dvtbbuxon/image/upload/f_auto,q_auto,w_1200,c_limit/v1767704060/interro_veoi1z.webp"
+                  alt="Interior of The Grooming Room Barbershop in Kellyville showing barber chairs, reception counter, and waiting area"
+                  title="The Grooming Room Barbershop interior - Kellyville"
+                  className="object-cover"
+                  fill
+                  sizes="(max-width: 1023px) 100vw, 50vw"
                 />
               </div>
-              <div>
-                <h4 className="text-xl font-bold tracking-[-0.02em] text-[var(--foreground)]">
-                  Trusted by Kellyville locals
-                </h4>
-                <p className="mt-3 text-sm leading-7 text-[var(--muted-foreground)]">
-                  Known for consistent barbering, clear communication, and a
-                  tidy finish that keeps regulars coming back.
-                </p>
-              </div>
             </div>
-          </div>
+          </Card>
+
+          <Card className="flex flex-col justify-center p-8 lg:p-10">
+            <div className="space-y-5">
+              {REASONS.map(({ Icon, color, title, text }) => (
+                <div
+                  key={title}
+                  className="flex gap-5 rounded-[24px] bg-[var(--muted)]/60 p-5"
+                >
+                  <div
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${color}`}
+                  >
+                    <Icon size={20} />
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900">
+                      {title}
+                    </h3>
+                    <p className="mt-2 text-base leading-relaxed text-slate-600">
+                      {text}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
         </div>
       </div>
     </section>

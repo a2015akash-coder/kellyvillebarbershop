@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Enter the Monthly Lucky Draw | The Grooming Room Barbershop Kellyville",
+  title:
+    "Enter the Monthly Lucky Draw | The Grooming Room Barbershop Kellyville",
   description:
     "Enter the Monthly Lucky Draw at The Grooming Room Barbershop in Kellyville. Multiple winners every month — fill in the form for your chance to win.",
 };
@@ -49,7 +50,8 @@ export default function WinPage() {
                 alt="Monthly Lucky Draw Poster"
                 width={600}
                 height={600}
-                className="w-full rounded-xl object-contain shadow-lg"
+                sizes="(max-width: 1023px) 100vw, 600px"
+                className="h-auto w-full rounded-xl object-contain shadow-lg"
               />
             </div>
 
