@@ -19,12 +19,14 @@ const HIGHLIGHTS = [
   "Special deals available for Senior & Kids",
 ];
 
-// Replace with the actual maps URL for the shop
-const DIRECTIONS_LINK = "https://maps.google.com/?q=The+Grooming+Room+Kellyville";
+const DIRECTIONS_LINK =
+  "https://maps.google.com/?q=The+Grooming+Room+Kellyville";
 
 export default function Hero() {
   return (
     <section className="relative flex min-h-[78vh] items-center overflow-hidden px-4 pt-10 sm:px-8 lg:px-8">
+      
+      {/* Background */}
       <div className="absolute inset-0">
         <Image
           src={HERO_IMAGE_MOBILE}
@@ -44,44 +46,54 @@ export default function Hero() {
           className="hidden object-cover object-center sm:block"
         />
 
-        <div className="absolute inset-0 bg-black/28 sm:bg-black/24" />
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,145,0,0.16)_0%,rgba(255,145,0,0.05)_28%,rgba(255,255,255,0.02)_52%,rgba(0,0,0,0.12)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.42)_0%,rgba(0,0,0,0.2)_38%,rgba(0,0,0,0.12)_65%,rgba(0,0,0,0.18)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.06)_58%,rgba(0,0,0,0.16)_100%)]" />
+        <div className="absolute inset-0 bg-black/30 sm:bg-black/26" />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,145,0,0.14)_0%,rgba(255,145,0,0.05)_30%,rgba(0,0,0,0.15)_100%)]" />
       </div>
 
+      {/* Content */}
       <div className="relative z-10 mx-auto w-full max-w-screen-xl">
-        <div className="max-w-3xl text-left sm:max-w-[44rem]">
-          <h1 className="mt-6 text-[clamp(2rem,5.4vw,4.9rem)] font-semibold leading-[0.94] tracking-[-0.045em] text-white">
-            <span className="block whitespace-nowrap">Premium barber <span className=" text-[var(--brand-accent)]">Shop</span>   
-            </span>
+        <div className="max-w-3xl sm:max-w-[48rem] text-center sm:text-left mx-auto sm:mx-0">
 
+          {/* Headline */}
+          <h1 className="mt-4 font-semibold leading-[1.02] tracking-[-0.035em] text-white">
+            <span className="block text-[clamp(1.9rem,6vw,4.6rem)]">
+              Premium barbershop
+            </span>
+            <span className="block text-[clamp(2.1rem,6.5vw,5rem)] text-[var(--brand-accent)] sm:whitespace-nowrap">
+              in Kellyville
+            </span>
           </h1>
 
-          <p className="mt-5 max-w-xl text-sm leading-7 text-white/74 sm:text-base">
+          {/* Description */}
+          <p className="mt-4 max-w-xl mx-auto sm:mx-0 text-sm leading-7 text-white/75 sm:text-base">
             The Grooming Room Barber Shop provides men&apos;s haircuts, skin
-            fades, coloring and beard trimming services in Kellyville.
+            fades, coloring and beard trimming services.
           </p>
 
-          <div className="mt-6 space-y-3">
+          {/* Highlights */}
+          <div className="mt-5 space-y-2.5 flex flex-col items-center sm:items-start">
             {HIGHLIGHTS.map((item) => (
-              <div key={item} className="flex items-center gap-3 text-left">
+              <div
+                key={item}
+                className="flex items-center gap-3 justify-center sm:justify-start"
+              >
                 <CheckCircle2
-                  size={22}
+                  size={20}
                   className="shrink-0 text-[var(--brand-accent)]"
                 />
-                <span className="text-base font-medium text-white/92 sm:text-[1.05rem]">
+                <span className="text-[0.98rem] sm:text-[1.02rem] text-white/90">
                   {item}
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+          {/* CTA */}
+          <div className="mt-6 flex flex-row flex-wrap justify-center gap-3 sm:flex-nowrap sm:justify-start sm:items-center">
             <a
               href={PHONE_LINK}
-              aria-label="Book an appointment"
-              className="group inline-flex items-center gap-3 rounded-full border border-white/16 bg-white/10 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md transition-all duration-300 hover:border-[var(--brand-accent)] hover:bg-[var(--brand-accent)] hover:text-white"
+              aria-label="Call now"
+              className="flex-1 sm:flex-none group inline-flex justify-center items-center gap-3 rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md transition-all duration-300 hover:border-[var(--brand-accent)] hover:bg-[var(--brand-accent)]"
             >
               <span>Call Now</span>
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-black transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
@@ -94,12 +106,13 @@ export default function Hero() {
               target="_blank"
               rel="noreferrer"
               aria-label="Get directions"
-              className="inline-flex items-center gap-2 rounded-full border border-white/16 bg-black/18 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white/92 backdrop-blur-md transition-all duration-300 hover:border-white/28 hover:bg-white/10 hover:text-white"
+              className="flex-1 sm:flex-none inline-flex justify-center items-center gap-2 rounded-full border border-white/15 bg-black/20 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white/90 backdrop-blur-md transition-all duration-300 hover:border-white/30 hover:bg-white/10 hover:text-white"
             >
               <MapPin size={16} strokeWidth={2.2} />
               <span>Get Directions</span>
             </a>
           </div>
+
         </div>
       </div>
     </section>
