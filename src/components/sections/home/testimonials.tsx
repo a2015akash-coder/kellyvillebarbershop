@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -8,32 +7,22 @@ import {
   MapPinned,
   Star,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { badgeVariants } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { type Review, useReviews } from "./reviews-context";
 
 const CARD_WIDTH = 380;
 const GAP = 24;
 const SLIDE_DISTANCE = CARD_WIDTH + GAP;
+const SKELETON_KEYS = [
+  "review-skeleton-1",
+  "review-skeleton-2",
+  "review-skeleton-3",
+] as const;
 const VISIBLE = 3;
-
-interface Review {
-  authorName: string;
-  authorPhoto: string;
-  authorUri: string;
-  rating: number;
-  text: string;
-  relativePublishTimeDescription: string;
-  publishTime: string;
-}
-
-interface Summary {
-  businessName: string;
-  rating: number;
-  userRatingCount: number;
-  googleMapsUri: string;
-}
 
 function getInitial(name = "") {
   return name.trim().charAt(0).toUpperCase() || "G";
@@ -87,9 +76,9 @@ function ReviewCard({
 
       <div className="mt-4 flex items-center gap-2">
         <div className="inline-flex items-center gap-1 rounded-md border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-700">
-          {stars.map((filled, i) => (
+          {stars.map((filled, starIndex) => (
             <Star
-              key={i}
+              key={`star-${starIndex + 1}`}
               size={12}
               className={filled ? "fill-current" : ""}
             />
@@ -147,66 +136,18 @@ function CarouselButton({
 }
 
 export default function Testimonials() {
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [summary, setSummary] = useState<Summary>({
-    businessName: "",
-    rating: 0,
-    userRatingCount: 0,
-    googleMapsUri: "",
-  });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const { reviews, summary, loading, error } = useReviews();
 
-  const [items, setItems] = useState<Review[]>([]);
+  const [items, setItems] = useState<Review[]>(reviews);
   const [offset, setOffset] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let ignore = false;
-
-    async function loadReviews() {
-      try {
-        setLoading(true);
-        setError("");
-
-        const response = await fetch("/api/reviews");
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data?.error || "Failed to load Google reviews");
-        }
-
-        const incomingReviews: Review[] = Array.isArray(data.reviews)
-          ? data.reviews
-          : [];
-
-        if (!ignore) {
-          setSummary({
-            businessName: data.businessName || "",
-            rating: Number(data.rating || 0),
-            userRatingCount: Number(data.userRatingCount || 0),
-            googleMapsUri: data.googleMapsUri || "",
-          });
-          setReviews(incomingReviews);
-          setItems(incomingReviews);
-        }
-      } catch (err) {
-        if (!ignore) {
-          setError(
-            err instanceof Error ? err.message : "Failed to load Google reviews",
-          );
-        }
-      } finally {
-        if (!ignore) setLoading(false);
-      }
-    }
-
-    loadReviews();
-    return () => {
-      ignore = true;
-    };
-  }, []);
+    setItems(reviews);
+    setOffset(0);
+    setIsAnimating(false);
+  }, [reviews]);
 
   const canCarousel = items.length > VISIBLE;
 
@@ -258,8 +199,7 @@ export default function Testimonials() {
             </div>
 
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-              What clients say about{" "}
-              {summary.businessName || "our shop"}
+              What clients say about {summary.businessName || "our shop"}
             </h2>
 
             {loading ? (
@@ -314,9 +254,9 @@ export default function Testimonials() {
         {/* REVIEWS */}
         {loading ? (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {Array.from({ length: 3 }).map((_, i) => (
+            {SKELETON_KEYS.map((key) => (
               <Card
-                key={i}
+                key={key}
                 className="h-[280px] animate-pulse rounded-[26px] bg-slate-200"
               />
             ))}

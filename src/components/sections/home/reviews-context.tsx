@@ -94,13 +94,13 @@ export function ReviewsProvider({
   children: ReactNode;
   initialData?: ReviewsPayload | null;
 }) {
-  const hasServerData = initialData !== undefined;
-  const initialPayload = initialData || reviewsCache;
+  const hasServerData = initialData !== undefined && initialData !== null;
+  const initialPayload = initialData ?? reviewsCache;
 
   const [state, setState] = useState<ReviewsState>(() => ({
     reviews: initialPayload?.reviews || [],
     summary: initialPayload?.summary || EMPTY_SUMMARY,
-    loading: !initialPayload && !hasServerData,
+    loading: !initialPayload,
     error: "",
   }));
 
