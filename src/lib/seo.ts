@@ -11,7 +11,7 @@ export const BUSINESS_JSON_LD = {
   name: SITE_NAME,
   image: DEFAULT_OG_IMAGE,
   url: SITE_URL,
-  telephone: "+61288832944",
+  telephone: "+61288831729",
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",

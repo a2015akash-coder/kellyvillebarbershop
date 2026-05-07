@@ -14,10 +14,10 @@ export default function PromoFinalCTA() {
           <p className="flex items-center justify-center gap-2">
             <Phone size={18} className="text-orange-500" />
             <a
-              href="tel:0451856618"
+              href="tel:+61288831729"
               className="font-medium transition hover:text-orange-600"
             >
-              0451 856 618
+              (02) 8883 1729
             </a>
           </p>
 
