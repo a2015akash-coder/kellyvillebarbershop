@@ -15,7 +15,6 @@ const NAV_ITEMS = [
   { label: "Services", href: "/mens-haircuts-beard-trims-kellyville" },
   { label: "Blogs", href: "/blogs" },
   { label: "Contact", href: "/contact" },
-  { label: "Promotions", href: "/monthly-draw-kellyville-barber" },
 ];
 
 function DesktopPendingHint() {
